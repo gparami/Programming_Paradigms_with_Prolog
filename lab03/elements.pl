@@ -21,7 +21,7 @@ lookUp(S) :-    write( 'Don\'t know the symbol: ' ),
 
 elements :- writeln('Elements in the Periodic Table'), 
             repeat,
-            writeln('Symbol to look-up: (num)'),
+            writeln('Symbol to look-up: '),
             read(S),
             not(lookUp(S)),
             writeln('Exiting.'),
