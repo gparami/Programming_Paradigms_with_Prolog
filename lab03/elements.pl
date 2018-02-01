@@ -19,10 +19,10 @@ lookUp(S) :-    write( 'Don\'t know the symbol: ' ),
                 writeln(S),
                 !, fail.
 
-elements :-     writeln('Elements in the Periodic Table'), 
-                repeat,
-                write('Symbol to look-up: '),
-                read(S),
-                not(lookUp(S)),
-                writeln('Exiting'),
-                !, fail.
+elements :- writeln('Elements in the Periodic Table'), 
+            repeat,
+            writeln('Symbol to look-up: (num)'),
+            read(S),
+            not(lookUp(S)),
+            writeln('Exiting.'),
+            !, fail.
