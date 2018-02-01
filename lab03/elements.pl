@@ -9,3 +9,20 @@ element(oxygen,'O').
 
 %Write an interactive Prolog program for the user to enter a symbol and the program prints the name of the corresponding chemical element.
 %If the symbol is not in the database, the program should exit otherwise loop again.
+
+lookUp(S) :-    element(E, S),
+                write(S),
+                write( ' is the symbol for: '),
+                writeln(E), !.
+
+lookUp(S) :-    write( 'Don\'t know the symbol: ' ),
+                writeln(S),
+                !, fail.
+
+elements :-     writeln('Elements in the Periodic Table'), 
+                repeat,
+                write('Symbol to look-up: '),
+                read(S),
+                not(lookUp(S)),
+                writeln('Exiting'),
+                !, fail.
