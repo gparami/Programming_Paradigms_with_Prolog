@@ -1,6 +1,6 @@
 % Write a predicate to add up all the numbers in a list but uses an alternating sign.
 
-addAlternate(L,S) :- addAlternate(L,0,_,S].
+addAlternate(L,S) :- addAlternate(L,0,p,S).
 
 addAlternate([],S,_,S).
 
