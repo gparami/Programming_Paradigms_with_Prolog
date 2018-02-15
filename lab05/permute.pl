@@ -1,0 +1,1 @@
+permute :- setof([X,Y,Z],(color(X), color(Y), color(Z))).
