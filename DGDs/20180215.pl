@@ -40,7 +40,10 @@ depth(nil,0) :- !.
 
 depth(t(_,nil,nil),1) :- !.
 
-depth(t)
+depth(t(_,Left,Right),D) :-
+    depth(Left,DLeft),
+    depth(Right,DRight),
+    D is max(DLeft,DRight) + 1.
 
 % Remove last node from heap
 removeLast(t(L,nil,nil),L,nil) :- !.
@@ -86,3 +89,8 @@ downHeap(t(K,Left,Right),t(RightKey,Left,NRight)) :- %normal case swap with righ
     LeftKey > RightKey,
     downHeap (t(K,RLeft,RRight),NRight).
 
+% H is Heap in, M is min, HH is modified Heap
+removeMin(t(M,nil,nil),M,nil) :- !.
+removeMin(t(M,Left,Right),M,HH) :-
+    removeLast(t(M,Left,Right),K,t(_,LLeft,RRight)),
+    downHeap(t(K,LLeft,RRight),HH).
