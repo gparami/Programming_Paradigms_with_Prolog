@@ -8,8 +8,9 @@ leftNodes(T,L) :- leftNodes(T,[],L).
 leftNodes(nil,LA,LA) :- !.
 
 leftNodes(t(Root,Left,nil),LA,L) :- 
-    
-    leftNodes(Left,LA,LL),
+    LA2 is LA,
+    LA is [Root|LA2],
+    leftNodes(Left,LA,LL).
     append(Root,LA,L).
 
 leftNodes(t(_,Left,Right),LA,L) :-
