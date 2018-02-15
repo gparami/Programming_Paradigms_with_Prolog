@@ -4,7 +4,7 @@
 
 % Checking heap property --> is full binary tree?
 full(nil, 0) :- !. %depth zero empty tree
-full(t(_,nill,nill),1) :- !. %tree with a single node
+full(t(_,nil,nil),1) :- !. %tree with a single node
 
 full(t(_,Left,Right),D) :- %recursive case
     full(Left,DLeft),
@@ -13,7 +13,7 @@ full(t(_,Left,Right),D) :- %recursive case
     D is DLeft + 1.
 
 % Checking heap property --> is key(parent) <= key(child)
-checkOrder(t(_,nill,nill)) :- !. %tree with just the root
+checkOrder(t(_,nil,nil)) :- !. %tree with just the root
 checkOrder(t(_,nil,_)) :- !,fail. %tree without a left tree, void's the fullness
 
 checkOrder(t(Key,Left,nil)) :- %recursive for the left tree (only left depth could be 2)
