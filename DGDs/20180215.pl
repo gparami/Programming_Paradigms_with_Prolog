@@ -94,3 +94,5 @@ removeMin(t(M,nil,nil),M,nil) :- !.
 removeMin(t(M,Left,Right),M,HH) :-
     removeLast(t(M,Left,Right),K,t(_,LLeft,RRight)),
     downHeap(t(K,LLeft,RRight),HH).
+
+% Extra exercise was to do Heap insertion <-- do this you'll be good for the midterm
