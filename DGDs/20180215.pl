@@ -31,3 +31,58 @@ checkOrder(t(Key,Left,Right)) :- %recursive for the all other posibilities (big 
 
 isHeap(T) :-    full(T,_), %check full tree
                 checkOrder(T),!. %check heap property for each node
+
+
+%% Removal of minimum (removal of root in minHeap)
+
+% Helper predicate to find tree depth
+depth(nil,0) :- !.
+
+depth(t(_,nil,nil),1) :- !.
+
+depth(t)
+
+% Remove last node from heap
+removeLast(t(L,nil,nil),L,nil) :- !.
+
+removeLast(t(K,Left,Right),L,t(K,LLeft,Right)) :- %see which side is bigger and remove last (Left)
+    depth(Left,DL),
+    depth(Right,DR),
+    DL > DR,
+    removeLast (Left,L,LLeft),!.
+
+removeLast(t(K,Left,Right),L,t(K,Left,RRight)) :- %see which side is bigger and remove last (Right)
+    depth(Left,DL),
+    depth(Right,DR),
+    DL =:= DR,
+    removeLast (Right,L,RRight),!.
+
+% Down Heap
+downHeap(t(K,nil,nil),t(K,Left,Right)) :- !. %heap with one element
+
+downHeap(t(K,Left,nil),t(LeftKey,t(K,nil,nil),nil)) :- %only one element after root to left (need swap)
+    Left = t(LeftKey,_,_),
+    LeftKey < K, !.
+
+downHeap(t(K,Left,nil),t(K,Left,nil)) :- %only one element after root to left (no swap)
+    Left = t(LeftKey,_,_),
+    LeftKey >= K, !.
+
+downHeap(t(K,Left,Right),t(K,Left,Right)) :- %normal case but already min heap
+    Left = t(LeftKey,_,_),
+    Right = t(RightKey,_,_),
+    K < LeftKey,
+    K < RightLey, !.
+
+downHeap(t(K,Left,Right),t(LeftKey,NLeft,Right)) :- %normal case swap with left
+    Left = t(LeftKey,LLeft,LRight),
+    Right = t(RightKey,_,_),
+    LeftKey < RightKey,
+    downHeap (t(K,LLeft,LRight),NLeft).
+
+downHeap(t(K,Left,Right),t(RightKey,Left,NRight)) :- %normal case swap with right
+    Left = t(LeftKey,_,_),
+    Right = t(RightKey,RLeft,RRight),
+    LeftKey > RightKey,
+    downHeap (t(K,RLeft,RRight),NRight).
+
