@@ -6,12 +6,13 @@ treeA(X) :- X = t(73, t(31, t(5, nil, nil), nil), t(101, t(83, t(97, nil, nil), 
 leftNodes(T,L) :- leftNodes(T,[],L).
 
 leftNodes(nil,LA,LA) :- !.
+leftNodes(t(Root,nil,nil),LA,LA) :- !.
 
-leftNodes(t(Root,Left,nil),LA,L) :- 
-    LL is [Root|LA],
+leftNodes(t(Root,nil,Right),LA,LR) :-
+    leftNodes(Left,LA,LR), !.
 
-    leftNodes(Left,LA,LL),
-    append(LL,LA,L).
+leftNodes(t(Root,Left,nil),LA,LL) :- 
+    leftNodes(Left,[Root|LA],LL), !.
 
 leftNodes(t(_,Left,Right),LA,L) :-
     leftNodes(Left,LA,LL),
