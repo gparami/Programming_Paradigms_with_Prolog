@@ -24,3 +24,19 @@ sister(X, Y) :- parent(Z, X), parent(Z, Y), female(X).
 % parent(robert, gail) = true, parent(robert, gail) = true, female(gail) = true <-- result
 % parent(robert, stan) = true, parent(robert, gail) = true, female(stan) = fail
 % parent(stan, jack) = true, parent(stan, gail) = false, female(jack) = fail
+
+
+
+% Predicates state if two person s fight the same enemy . If yes, they become allies.
+combat(paul,pierre).
+combat(jean,simon).
+combat(jean,pierre).
+allies(X,Y) :- combat(X,Z),combat(Y,Z).
+
+% Give all solutions and explain how and in which order they are obtained in response to the foloowing query: ?- allies(X,Y).
+% combat(X,Z), combat(Y,Z).
+% combat(paul,pierre), combat(Y,pierre) --> X = paul, Y = paul
+% combat(paul,pierre), combat(Y,pierre) --> X = paul, Y = jean
+% combat(jean,simon), combat(Y,simon) --> X = jean, Y = jean
+% combat(jean,pierre), combat(Y,pierre) --> X = jean, Y = paul
+% combat(jean,pierre), combat(Y,pierre) --> X = jean, Y = jean
