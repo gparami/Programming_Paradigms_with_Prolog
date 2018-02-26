@@ -33,3 +33,7 @@ employee(paul,rossvideo).
 employee(marie,rossvideo).
 employee(simon,uber).
 
+% a)
+% Simple predicate that will give the correct answer but not as a list
+% person(X,Y), employee(X,Z), company(Z,Y).
+
