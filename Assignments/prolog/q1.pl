@@ -34,6 +34,16 @@ employee(marie,rossvideo).
 employee(simon,uber).
 
 % a)
-% Simple predicate that will give the correct answer but not as a list
-% person(X,Y), employee(X,Z), company(Z,Y).
+% ?- findall(X, (person(X,Y), employee(X,Z), company(Z,Y)), L).
 
+% b)
+% ?- findall(X, (company(X,Y), city(Y,ontario)), L).
+
+% c)
+% ?- findall(X, (person(X,Y), not(employee(X,Z))), L).
+
+% d)
+% ?- findall(X, (person(X,Y), employee(X,Z), company(Z,ottawa)), L).
+
+% e)
+% ?- setof(X, Y^Z^(person(X,Y), employee(X,Z), company(Z,ottawa)), L).
